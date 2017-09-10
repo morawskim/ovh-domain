@@ -1,0 +1,14 @@
+{
+    "name": "mmo/ovh-change-domain-record",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcin Morawski",
+            "email": "marcin@morawskim.pl"
+        }
+    ],
+    "require": {
+        "ovh/ovh": "^2.0"
+    }
+}
