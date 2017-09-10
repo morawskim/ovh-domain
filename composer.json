@@ -9,6 +9,7 @@
         }
     ],
     "require": {
-        "ovh/ovh": "^2.0"
+        "ovh/ovh": "^2.0",
+        "symfony/console": "^3.3"
     }
 }
