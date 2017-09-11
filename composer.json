@@ -8,6 +8,11 @@
             "email": "marcin@morawskim.pl"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Mmo\\OVHClient\\": "src/"
+        }
+    },
     "require": {
         "ovh/ovh": "^2.0",
         "symfony/console": "^3.3"
