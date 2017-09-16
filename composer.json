@@ -13,8 +13,16 @@
             "Mmo\\OVHClient\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Mmo\\OVHClientTest\\": "tests/"
+        }
+    },
     "require": {
         "ovh/ovh": "^2.0",
         "symfony/console": "^3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
     }
 }
