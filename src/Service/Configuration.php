@@ -55,4 +55,57 @@ class Configuration
 
         return $obj;
     }
+
+    public static function getDefaultConfigFile()
+    {
+        $paths = [];
+        $userDir = self::getUserDir();
+
+        $paths[] = getcwd() . DIRECTORY_SEPARATOR . 'ovh-domain.ini';
+
+        if (self::useXdg()) {
+            $xdgConfig = getenv('XDG_CONFIG_HOME') ?: $userDir . '/.config';
+            $paths[] = $xdgConfig . DIRECTORY_SEPARATOR . 'config.ini';
+        } else {
+            $paths[] = $userDir . DIRECTORY_SEPARATOR . '.ovh-domain' . DIRECTORY_SEPARATOR . 'config.ini';
+        }
+
+        if (stripos(PHP_OS, 'linux') === 0) {
+            $paths[] = '/etc/ovh-domain/config.ini';
+        }
+
+        foreach ($paths as $path) {
+            if (file_exists($path) && is_readable($path)) {
+                return $path;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return bool
+     */
+    private static function useXdg()
+    {
+        foreach (array_keys($_SERVER) as $key) {
+            if (substr($key, 0, 4) === 'XDG_') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @throws \RuntimeException
+     * @return string
+     */
+    private static function getUserDir()
+    {
+        $home = getenv('HOME');
+        if (!$home) {
+            throw new \RuntimeException('The HOME environment variable must be set');
+        }
+        return rtrim(strtr($home, '\\', '/'), '/');
+    }
 }

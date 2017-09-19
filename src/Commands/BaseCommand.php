@@ -37,6 +37,13 @@ class BaseCommand extends Command
         }
 
         $configFile = $input->getOption('config');
+        if (empty($configFile)) {
+            $configFile = Configuration::getDefaultConfigFile();
+            if (empty($configFile)) {
+                $msg = 'Config file not found. Use --config option to pass path to config file.';
+                throw new \RuntimeException($msg);
+            }
+        }
         $config = Configuration::parseIniFile($configFile);
         $this->setApi(OvhApi::factoryFromConfig($config));
     }
