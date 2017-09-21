@@ -47,5 +47,8 @@ class UpdateDomainRecord extends BaseCommand
         }
 
         $ovh->put('/domain/zone/' . $input->getArgument('zone') .'/record/' . $input->getArgument('id'), $record);
+
+        //Apply zone modification on DNS servers
+        $ovh->post('/domain/zone/' . $input->getArgument('zone') . '/refresh');
     }
 }

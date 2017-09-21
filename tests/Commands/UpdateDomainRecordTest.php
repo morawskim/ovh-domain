@@ -42,6 +42,11 @@ class UpdateDomainRecordTest extends \PHPUnit_Framework_TestCase
             )
             ->willReturn(null);
 
+        $builder->expects($this->once())
+            ->method('post')
+            ->with('/domain/zone/' . $zone . '/refresh')
+            ->willReturn(null);
+
         $command = new UpdateDomainRecord();
         $command->setApi($builder);
 
