@@ -65,7 +65,7 @@ class Configuration
 
         if (self::useXdg()) {
             $xdgConfig = getenv('XDG_CONFIG_HOME') ?: $userDir . '/.config';
-            $paths[] = $xdgConfig . DIRECTORY_SEPARATOR . 'config.ini';
+            $paths[] = $xdgConfig . DIRECTORY_SEPARATOR . 'ovh-domain' . DIRECTORY_SEPARATOR . 'config.ini';
         } else {
             $paths[] = $userDir . DIRECTORY_SEPARATOR . '.ovh-domain' . DIRECTORY_SEPARATOR . 'config.ini';
         }
