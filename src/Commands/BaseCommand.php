@@ -7,12 +7,25 @@ use Mmo\OVHClient\Service\OvhApi;
 use Ovh\Api;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class BaseCommand extends Command
 {
     /** @var Api */
     protected $api = null;
+
+    public function __construct($name = null)
+    {
+        parent::__construct($name);
+        $option = new InputOption(
+            'config',
+            'c',
+            InputOption::VALUE_OPTIONAL,
+            'Path to config file'
+        );
+        $this->getDefinition()->addOption($option);
+    }
 
     /**
      * @return Api
