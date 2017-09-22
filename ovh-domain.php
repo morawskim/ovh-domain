@@ -8,4 +8,5 @@ $application->add(new \Mmo\OVHClient\Commands\ListDomainZonesCommand());
 $application->add(new \Mmo\OVHClient\Commands\ListDomainZoneRecords());
 $application->add(new \Mmo\OVHClient\Commands\UpdateDomainRecord());
 $application->add(new \Mmo\OVHClient\Commands\CurrentCredential());
+$application->add(new \Mmo\OVHClient\Commands\DomainCredential());
 $application->run();
